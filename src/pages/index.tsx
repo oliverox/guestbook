@@ -36,7 +36,7 @@ const Form = () => {
     },
     onSettled: () => {
       utils.guestbook.getAll.invalidate();
-    }
+    },
   });
 
   return (
@@ -83,13 +83,17 @@ const Home: NextPage = () => {
     <main className="flex flex-col items-center">
       <h1 className="pt-4 text-3xl">Guestbook</h1>
       <p>
-        Built to learn more about <code className="bg-yellow-300 text-neutral-900">create-t3-app</code>
+        Built to learn more about{" "}
+        <code className="bg-yellow-300 text-neutral-900">create-t3-app</code>
       </p>
       <div className="pt-10">
         {session ? (
           <>
             <p>Hi {session.user?.name}</p>
-            <button className="btn btn-primary" onClick={() => signOut()}>
+            <button
+              className="rounded-md border-2 border-zinc-800 p-2 focus:outline-none"
+              onClick={() => signOut()}
+            >
               Logout
             </button>
             <div className="pt-6">
@@ -97,9 +101,20 @@ const Home: NextPage = () => {
             </div>
           </>
         ) : (
-          <button className="btn" onClick={() => signIn("discord")}>
-            Login with Discord
-          </button>
+          <>
+            <button
+              className="rounded-md border-2 border-zinc-800 p-2 focus:outline-none"
+              onClick={() => signIn("google")}
+            >
+              Login with Google
+            </button>
+            <button
+              className="rounded-md border-2 border-zinc-800 p-2 focus:outline-none"
+              onClick={() => signIn("discord")}
+            >
+              Login with Discord
+            </button>
+          </>
         )}
         <div className="pt-10">
           <Messages />
